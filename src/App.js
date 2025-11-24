@@ -6,6 +6,7 @@ import MovieDetails from './components/Ui/MovieDetails';
 import Artist from './components/Ui/Artist';
 import NavBar from './components/Ui/NavBar';
 import Payment from './components/Ui/Payment';
+import Footer from './components/Ui/Footer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/artist' element={<Artist />} />
         <Route path='/payment' element={<Payment />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

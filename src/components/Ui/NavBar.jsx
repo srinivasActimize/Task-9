@@ -145,8 +145,8 @@ export default function NavBar() {
   return (
     <>
      
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{color:'black',bgcolor:'white'}} position="static">
+    <Box sx={{ flexGrow: 1,pt:1,pb:2 }}>
+      <AppBar sx={{color:'black',bgcolor:'white',boxShadow:'none',border:"1px solid black"}} position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -167,7 +167,7 @@ export default function NavBar() {
           </Typography>
 
 
-          <Search>
+          <Search sx={{border:"1px solid grey", borderRadius:2, }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

@@ -1,0 +1,216 @@
+{
+    "movies":[
+        {
+        "title":"chatrapathi",
+        "rating":"3",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763959298/wz9uxumomxyojjpwcgql.jpg",
+        "certificate":"UA16+"
+        },
+        {
+        "title":"Aavara",
+        "rating":"3",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724798/AWARA_BMS_1_20_1_-47cfef90-c141-11f0-83cc-0594da99e4f8-54c8a5a0-c36e-11f0-bd60-c3f59361b483_brwoez.jpg",
+        "certificate":"UA16+"
+        },
+        {
+        "title":"The girlfriend",
+        "rating":"2.5",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724806/The-Girlfriend_Poster-b7882e80-ba0a-11f0-9eff-bddac0cd5b2e_vbegzf.jpg",
+        "certificate":"UA13+"
+        },
+         {
+        "title":"premante",
+        "rating":"3",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724833/Premante-4345a420-c3c0-11f0-b20b-ed51d3968264_vk4hle.jpg",
+        "certificate":"UA13+"
+        },
+         {
+        "title":"Mastii4",
+        "rating":"3",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724846/mastiii-4-184e9480-9b74-11f0-ba20-b174e36b461e_zloeop.jpg",
+        "certificate":"UA16+"
+        },
+         {
+        "title":"Amazing spiderman2",
+        "rating":"3",
+        "language":"English",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724853/The-Amazing-Spider-Man-2-min-64fb91d0-c51c-11f0-9676-cf6a4124e1d4_o1bz0d.jpg",
+        "certificate":"UA16+"
+        },
+         {
+        "title":"Kaantha",
+        "rating":"2",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724871/Kaantha--20b6ce20-bf9c-11f0-81d4-51be6cdc4380_fgkglv.jpg",
+        "certificate":"UA16+"
+        },
+         {
+        "title":"Wicked",
+        "rating":"3",
+        "language":"English",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724878/portrait_20_8_-8ff04660-c3b9-11f0-9305-0b5c8a1d71e5_j2mzrh.jpg",
+        "certificate":"UA16+"
+        },
+         {
+        "title":"Shin-chan",
+        "rating":"3",
+        "language":"Hindi",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763725017/Shin-chan--The-Spicy-Kasukabe-Dancers-in-India-83abc550-9aa1-11f0-95a0-71e5f4337a1e_alrwqd.jpg",
+        "certificate":"UA8+"
+        },
+         {
+        "title":"Demon slayer",
+        "rating":"3",
+        "language":"Japanese",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763725007/Demon-Slayer--Kimetsu-no-Yaiba-Infinity-Castle-cover-57c0fbd0-9aa2-11f0-8dc6-ed40ef18c005_aowk7n.jpg",
+        "certificate":"UA16+"
+        },
+         {
+        "title":"Veedokkade",
+        "rating":"3",
+        "language":"telugu",
+        "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763725090/portrait_20_9_-cda3ce40-c469-11f0-8ea2-2354ff7ae8b9_uivlds.jpg",
+        "certificate":"UA13+"
+        }
+    ],
+    "events":[
+        {
+            "title":"Radhika Das India Tour 2025 | Bengaluru",
+            "date":"Fri, 28 Nov, 7:00 PM",
+            "location":"Phoenix Marketcity, Bengaluru",
+            "category":"Music, Concerts",
+            "price":"1,999",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763964822/devpeyo43wmgyt8omcvy_lsfk5v.png",
+            "about":"Experience the magic of a soul-stirring India tour as the Radhika Das Kirtan Concert travels across 9 major cities. This powerful musical journey brings together thousands in a celebration of mantra, music, and collective devotion. Feel the energy rise as sacred sounds and timeless chants echo through packed venues in an unforgettable evening of rhythm and reverence. More than a concert - this is a movement of joy, unity, and spiritual connection sweeping the nation.Radhika Das is a London-based Kirtan artist, Bhakti Yoga teacher, and podcast host dedicated to helping people find spiritual fulfilment through mantra meditation and devotion. He has led Kirtans and Bhakti Yoga events in over 30 cities worldwide, inspiring diverse audiences through the power of sacred sound. With deep roots in the Bhakti tradition, Radhika brings authenticity, warmth, and presence to every gathering."
+        },
+         {
+            "title":"Zamna India 3.0 | Bengaluru",
+            "date":"Fri, 28 Nov, 5:00 PM",
+            "location":"Manpho Convention Centre, Bengaluru",
+            "category":"Music, Nightlife",
+            "price":"4,500",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763964875/t7qixocaahawu9hntgt0_epeveg.jpg",
+            "about":"After two unforgettable editions that redefined the electronic music experience in India, Zamna Festival returns for its third and most immersive edition yet. What began in the mystical jungles of Tulum, Mexico, has evolved into a global phenomenon—with unforgettable takeovers in Barcelona, Ibiza, New York, São Paulo, Dubai, and now, for the first time, in Bengaluru.The 3rd edition promises to be the biggest and the boldest yet, featuring major international electronic acts, deep soundscapes, immersive lighting, and Tulum’s iconic jungle energy"
+        },
+         {
+            "title":"Ilaiyaraaja Live in Concert | Hosuril Raaja | Hosur",
+            "date":"Fri, 28 Nov, 7:00 PM",
+            "location":"Phoenix Marketcity, Bengaluru",
+            "category":"Music, Concerts",
+            "price":"1999",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763964931/qgvajehy3qwidhfsbmyk_zmnnnl.jpg",
+            "about":"Ilaiyaraaja revolutionized Indian film music by creating symphonic compositions that seamlessly integrated Western orchestral arrangements with Indian melodies, rhythms, and instruments. His contribution to symphonic music is vast—ranging from film scores, live symphonic concerts, to original orchestral works. Through his innovative approach, he has redefined the boundaries of symphonic music, creating an emotional and auditory experience that has become his trademark. His work remains a perfect synthesis of Eastern and Western musical traditions, making him one of the greatest composers in the history of world music.People of In and around HOSUR – Get ready to witness the Isaignani Maestro Ilaiyaraja along with his mammoth orchestra and well established playback singers.For fans of Ilaiyaraaja’s music, this concert feels like a pilgrimage to the soul of Tamil cinema. The event becomes a bridge connecting generations of listeners to the rich tapestry of the Maestro’s works, be it his soulful ballads, rousing tunes, or the deeply evocative classical pieces that have become part of the cinematic landscape.With a career spanning over five decades, Ilaiyaraaja has composed more than 7,000 songs and scored music for over 1,400 films in multiple languages. His music, blending classical and contemporary styles, has redefined Indian cinema. From soul-stirring melodies to electrifying compositions, this concert will take you on a journey through his greatest hits, bringing to life the emotions and magic that only Ilaiyaraaja can create."
+        },
+         {
+            "title":"Sunidhi Chauhan - I Am Home India Tour 2025-26 | Bengaluru",
+            "date":"Sat, 17 Jan, 7:00 PM",
+            "location":"Venue to be announced, Bengaluru",
+            "category":"Music, Concerts",
+            "price":"2,500",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763965113/grw09l7rtpfranyvcpwp_ydppoh.png",
+            "about":"When Sunidhi hits the stage, the vibe flips. Lights drop. Bass hits. The crowd loses it. No filters. No fluff. Just pure, electric energy. This December, she’s back — louder, bolder, and unapologetically Sunidhi. A tour built different: bigger sound, tighter groove, and a setlist that’s straight fire. The hits that raised you. The ones you forgot you knew. And a few that’ll melt your playlist. 20+ years. 22 awards. 2,500 songs. But the numbers don’t matter the moment does. It’s her. It’s you. It’s live music the way it’s meant to feel. This isn’t a throwback. This is Sunidhi. Unstoppable. Untamed. Home."
+        },
+         {
+            "title":"Lifafa live at Sunburn Union | Bengaluru",
+            "date":"Sun, 7 Dec, 8:00 PM – Mon, 8 Dec, 12:45 AM",
+            "location":"Sunburn Union, Bengaluru",
+            "category":"Music, Concerts",
+            "price":"1,199",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763965262/kh9nbudmmgjdvugwymxh_ahughm.png",
+            "about":"Get ready to experience lifafa like never before!Bringing his unique take on Indian Pop to Sunburn Union, Lifafa’s music is a fusion of deep emotions, experimental sounds, and irresistible rhythms.From soulful melodies to groovy beats, his performance promises to be an unforgettable journey through sound and storytelling. Don’t miss out on this one-of-a-kind musical experience!"
+        },
+         {
+            "title":"Brunch Park! 2025",
+            "date":"Sun, 30 Nov, 12:00 PM",
+            "location":"Tokoro farms, Pune",
+            "category":"Food & Drinks, Fests & Fairs",
+            "price":"1599",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763965301/uydmeygeoeyiwmvuse0y_kiaroq.jpg",
+            "about":"Experience the magic of a soul-stirring India tour as the Radhika Das Kirtan Concert travels across 9 major cities. This powerful musical journey brings together thousands in a celebration of mantra, music, and collective devotion. Feel the energy rise as sacred sounds and timeless chants echo through packed venues in an unforgettable evening of rhythm and reverence. More than a concert - this is a movement of joy, unity, and spiritual connection sweeping the nation.Radhika Das is a London-based Kirtan artist, Bhakti Yoga teacher, and podcast host dedicated to helping people find spiritual fulfilment through mantra meditation and devotion. He has led Kirtans and Bhakti Yoga events in over 30 cities worldwide, inspiring diverse audiences through the power of sacred sound. With deep roots in the Bhakti tradition, Radhika brings authenticity, warmth, and presence to every gathering."
+        },
+         {
+            "title":"G.O.A.T India Tour 2025 | Lionel Messi | Kolkata",
+            "date":"Sat, 13 Dec, 10:30 AM",
+            "location":"Vivekananda Yuba Bharati Krirangan (VYBK), Kolkata",
+            "category":"Sports, Football",
+            "price":"3800",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763965322/bldl5wiarakneltbavia_kld1iu.jpg",
+            "about":"Messi in India – A Once-in-a-Lifetime ExperienceThis December, witness football history unfold in Kolkata!Catch the World Cup Winner Messi live on the field - playing in a 11v11 celebrity match, leading a masterclass with young scouted talents, and taking on thrilling penalty shootouts, alongside a musical concert celebrating the legend.Book your spot now to be a part of something truly extraordinary!"
+        }
+    ],
+    "top-events":[
+        {
+            "title":"Pyramid Ibiza | Goa",
+            "date":"Sun, 28 Dec, 4:00 PM – Mon, 29 Dec, 3:00 AM",
+            "location":"Thalassa Beach Boutique Resort, Goa",
+            "category":"Music, Nightlife",
+            "price":"1,999",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724232/agxfr8hbmrmqkvfw6bi4_fwpy74.png",
+            "about":"Paradisos and Thalassa Beach Boutique Resort are thrilled to officially announce the return of Pyramid Ibiza for its highly anticipated 2nd edition, a sensational beachfront celebration. After an unforgettable debut that set the sands ablaze last year, Pyramid is ready to turn up the energy once again with a world-class lineup, immersive soundscapes and the kind of vibe that only Goa by the sea can offer."
+        },
+         {
+            "title":"Mahaul",
+            "date":"Tue, 30 Dec, 9:00 PM – Sun, 4 Jan, 12:00 PM",
+            "location":"Dynamo, Goa ",
+            "category":"Music, Nightlife",
+            "price":"3,500",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724220/prjpq2zy8ucvvwxx1fjw_jlgxod.jpg",
+            "about":"MAHAUL returns as a five-day open-air takeover where music, art and midnight rituals fuse into something legendary. Expect towering headline moments, secret late-night sets and sunrise scenes that feel like a fresh beginning; every moment is designed to surprise, transport and stay with you long after the lights fade. The energy will be relentless, the production immaculate and the crowd electric — arrive ready to be part of a live story everybody will be talking about."
+        },
+         {
+            "title":"Above & Beyond | Kolkata",
+            "date":"Wed, 24 Dec, 4:00 PM – Thu, 25 Dec, 4:00 AM",
+            "location":"Biswa Bangla Mela Prangan, Kolkata",
+            "category":"Music, Nightlife",
+            "price":"1,249",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724071/vrjnnqsp96uu2ph3jdof_zdy36x.jpg",
+            "about":"This Christmas Eve, SGA Production Empire brings you the lineup you’ve been dreaming of the one that takes us back to where it all began! Above & Beyond returns to India for their Bigger Than All Of Us Album Tour, and we're pulling out all the stops to make this the most unforgettable night of the year, with a carefully curated lineup spanning progressive house, melodic techno, and trance. The Main Concert Arena will pulse with life, featuring extraordinary talent: Above & Beyond the triumphant return of Jono Grant, Tony McGuinness, and Paavo Siljamäki bringing their soul-stirring progressive anthems and ethereal album sounds to the City of Joy, joined by Arcane, Nohr (Live), Phil, Vikrant, Rudra, and Techdrone."
+        },
+         {
+            "title":"Sid Sriram Live in Concert | Hyderabad",
+            "date":"Sat, 13 Dec, 5:00 PM",
+            "location":"LB Stadium, Hyderabad",
+            "category":"Music, Concerts",
+            "price":"3,000",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724123/m45batqv2gy9btuzgrcy_gdqtvf.jpg",
+            "about":"Some voices don’t just sing, they awaken something deep within.Sid Sriram is one of those rare artists who doesn’t just perform music… he becomes it.This concert isn’t just about a setlist or a stage, it’s a journey. A moment suspended in time. A powerful collective experience where every note pulls at memory, every silence says what words never could, and every crescendo feels like it was meant just for you.From the moment the lights go down, you’re no longer in the real world, you’re in his world. A world where the boundaries between classical and contemporary dissolve. Where Indian roots blend effortlessly with soul, R&B, and electronic textures. Where vulnerability is strength, and sound is emotion."
+        }
+    ],
+    "artists":[
+        {
+            "name":"Sid-sriram",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763724324/o9leyfeqhokwtfkkcep0_dvkgoi.jpg",
+            "about":""
+        },
+        {
+            "name":"Sunidhi Chauhan",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763967278/xjzccolkuyfxrcm0ccki_akbrz6.jpg",
+            "about":"Sunidhi Chauhan is one of the most versatile and popular singers in Bollywood, with over 2500 songs in her repertoire and numerous awards and accolades. She has sung in various genres and languages, including Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, and English. She has received several nominations throughout her career & won 22 awards."
+        },
+        {
+            "name":"Ilaiyaraaja",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763967299/ckxqionx37sb8qvwkizy_ztwzxk.jpg",
+            "about":"Considered amongst the world’s best composers, Dr Ilaiyaraaja needs no introduction. Composing 7,000+ songs, recording film scores for 1,400+ movies, and performing at least 20,000 concerts - is no mean feat. He is a living legend. A recipient of several awards & accolades, including national honours - Ilaiyaraaja is credited with popularising the combination of western musical sensibilities with traditional Indian instruments and bringing that sound to the mainstream. We can go on and on talking about the Maestro, and it still won’t do justice."
+        },
+        {
+            "name":"Jubin Nautiyal",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763967309/xsx7flta2gvfelazxihw_p6ykyi.jpg",
+            "about":"Jubin Nautiyal is an Indian playback singer known for his soothing voice, emotional depth, and versatility across genres. His singing style blends contemporary melodies with a touch of classical finesse, creating a unique musical identity that resonates deeply with listeners. Often described as soulful and heartfelt, Jubin’s performances convey genuine emotion, making his songs memorable and relatable. With hits like “Raataan Lambiyan” and “Lut Gaye”, he has established himself as one of the most expressive and beloved singers in modern Indian music."
+        },
+        {
+            "name":"Radhika Das",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763967528/apkam20ng5cnk1hpwvgy_irddcz.jpg",
+            "about":"Radhika Das is a London-based Kirtan artist and Bhakti Yoga teacher who has been practicing for over 15 years. His journey into spiritual exploration led him to embrace Bhakti Yoga - a path centered on love and devotion - with a particular focus on Kirtan, the ancient practice of call-and-response mantra chanting. Through this practice, he aims to help individuals find spiritual fulfillment and inner peace."
+        },
+        {
+            "name":"Louis CK",
+            "image":"https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763967666/i2myltfwt8wwpr00g8oo_gfpyam.jpg",
+            "about":"Few comedians have shaped modern stand-up like Louis C.K. With his razor-sharp wit, fearless honesty, and a knack for turning life’s most awkward moments into comedy gold, he’s remained one of the most compelling voices in the game.From iconic specials like Shameless and Oh My God to the Emmy-winning brilliance of Louie, his storytelling is raw, real, and unapologetically hilarious. After a hiatus, he’s back, selling out shows worldwide, dropping fresh material, "
+        }
+    ]
+}
