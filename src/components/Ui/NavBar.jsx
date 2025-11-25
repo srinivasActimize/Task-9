@@ -15,7 +15,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles'; 
+import ButtonGroup from '@mui/material/ButtonGroup';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -80,6 +84,16 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  
+const useStyles = makeStyles({
+  activeButton: {
+    '&:active': {
+      backgroundColor: 'darkblue', // Example: Change background on active state
+      color: 'white',
+    },
+  },
+});
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -104,7 +118,7 @@ export default function NavBar() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
-    
+
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
@@ -120,7 +134,7 @@ export default function NavBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-        
+
       <MenuItem>
         <p>Messages</p>
       </MenuItem>
@@ -144,92 +158,83 @@ export default function NavBar() {
 
   return (
     <>
-     
-    <Box sx={{ flexGrow: 1,pt:1,pb:2 }}>
-      <AppBar sx={{color:'black',bgcolor:'white',boxShadow:'none',border:"1px solid black"}} position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='100px' height='50px'/>
-          </Typography>
+
+      <Box sx={{ flexGrow: 1, pt: 1, pb: 2 }}>
+        <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
+          <Toolbar>
+            <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
+              <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' />
+            </Box>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
+                <LocationOnOutlinedIcon />
+              </Box>
+              <Box>
+                <Typography align='left' variant='h6' sx={{ fontWeight: 'bold' }}>Kakinada</Typography>
+                <Typography align='left' variant='p'>12th ward, Bhanugudi</Typography>
+              </Box>
+            </Box>
+
+            <Box>
+              <ButtonGroup variant='text'>
+                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >for you</Typography>  </Button>
+                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >events</Typography>  </Button>
+                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >movies</Typography>  </Button>
+              </ButtonGroup>
+            </Box>
+            <Box sx={{ display: 'center', justifyContent: 'center' }}>
+
+              <Search sx={{ border: "1px solid grey", borderRadius: 2, }}>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </Search>
+
+              <Box sx={{ flexGrow: 1 }} />
+              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  {/* <AccountCircle /> */}
+                  <AccountCircleOutlinedIcon />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </Box>
+            </Box>
 
 
-          <Search sx={{border:"1px solid grey", borderRadius:2, }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+          </Toolbar>
+        </AppBar>
 
+        {renderMobileMenu}
+        {renderMenu}
 
+      </Box>
 
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={2} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
-            {/* <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={2} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              {/* <AccountCircle /> */}
-              <AccountCircleOutlinedIcon/>
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      
-      {renderMobileMenu}
-      {renderMenu}
-      
-    </Box>
-   
     </>
-    
+
 
   );
 }

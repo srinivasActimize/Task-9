@@ -14,6 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -28,6 +29,7 @@ import { getProductsDataActionInitiate } from '../redux/Action/getItemsAction';
 import CardActionArea from '@mui/material/CardActionArea';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -54,27 +56,25 @@ const ExpandMore = styled((props) => {
 }));
 
 const Home = () => {
-  
+  const navigate=useNavigate();
 window.addEventListener('resize',function(){
 })
 
 const dispatch=useDispatch();
 
-// const data=useSelector(temp=>temp.getproductsdata);
-// const [product,setProduct]=useState(data);
+ const handleClick=(name)=>{
+    navigate(`/movies/${name}`);
+  }
 
-  const [expanded, setExpanded] = React.useState(false);
-  
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  const handleEvent=(name)=>{
+    navigate(`/events/${name}`);
+  }
   useEffect(() => {
     dispatch(getProductsDataActionInitiate());
   }, [dispatch]);
 
   const data = useSelector(temp => temp.getproductsdata);
-
+console.log('dataaa',data)
 const districtDocs = data.data;
 
 if (!districtDocs) {
@@ -88,9 +88,9 @@ const events = districtDocs?.[districtId]?.events || [];
 const topEvents = districtDocs?.[districtId]?.["top-events"];
 
 // const topEvents=districtDocs?.[districtId]?.top-events || [];
-console.log("districtId:", movies);
+console.log("districtIwwwwwwwwd:", movies);
 console.log("moviesss:", topEvents);
-let mslides=6;
+let mslides=5;
 let eslides=4;
     window.addEventListener("resize", function() {
       const width=this.window.innerWidth
@@ -111,21 +111,20 @@ let eslides=4;
     });
     console.log(mslides)
   return (
-    <Container>
+    <Container >
     
-    <Box>
+    <Box sx={{mt:8}}>
         <Typography variant='h5' align='left'>Movies of the week</Typography>
       <Box sx={{mt:2}}>
     <Swiper
         slidesPerView={mslides}
         spaceBetween={30}
         freeMode={true}
-
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
         {movies.map((movie,index)=>(
-          <SwiperSlide>
+          <SwiperSlide onClick={()=>handleClick(movie.title)}>
       <Card sx={{ maxWidth: 345,borderRadius:2,mb:2 }}>
      
       <CardMedia
@@ -158,9 +157,10 @@ let eslides=4;
 
         modules={[FreeMode, Pagination]}
         className="mySwiper"
+        
       >
         {events.map((event,index)=>(
-          <SwiperSlide>
+          <SwiperSlide onClick={()=>handleEvent(event.title)}>
       <Card sx={{ maxWidth: 345,borderRadius:3,mb:2 }}>
      
       <CardMedia
