@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #f5f1ff 0%, #ffffff 40%, #ffffff 100%);
+  min-height: 100vh;
+}
+.events-page {
+  background: linear-gradient(180deg, #fff9d9 0%, #ffffff 60%);
+  min-height: 100vh;
+}
+.home-page {
+  background: linear-gradient(180deg, #f5f1ff 0%, #ffffff 60%);
+  min-height: 100vh;
+}
+.footer{
+  position: static;  
+  bottom: 0;
+}

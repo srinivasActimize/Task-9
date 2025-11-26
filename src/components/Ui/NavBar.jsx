@@ -18,8 +18,11 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Button from '@mui/material/Button';
-import { makeStyles } from '@mui/styles'; 
+import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { useNavigate } from 'react-router-dom';
+import { blue } from '@mui/material/colors';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -61,6 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const [active, setActive] = useState('one');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -83,16 +87,22 @@ export default function NavBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleButton = (value) => {
+    setActive(value);
+  }
+  const navigate = useNavigate();
 
-  
-const useStyles = makeStyles({
-  activeButton: {
-    '&:active': {
-      backgroundColor: 'darkblue', // Example: Change background on active state
-      color: 'white',
+  const handleBack = () => {
+    navigate('/');
+  }
+  const useStyles = makeStyles({
+    activeButton: {
+      '&:active': {
+        backgroundColor: 'darkblue', // Example: Change background on active state
+        color: 'white',
+      },
     },
-  },
-});
+  });
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -160,74 +170,139 @@ const useStyles = makeStyles({
     <>
 
       <Box sx={{ flexGrow: 1, pt: 1, pb: 2 }}>
-        <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
-          <Toolbar>
-            <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
-              <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' />
-            </Box>
+        <Box sx={{ display: { sm: 'none', lg: 'block', xs: 'none', md: 'block' } }}>
+          <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
-                <LocationOnOutlinedIcon />
+              <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
+                  <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' onClick={handleBack} />
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
+                    <LocationOnOutlinedIcon />
+                  </Box>
+                  <Box>
+                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold',fontSize:'16px' }} >Kakinada</Typography>
+                    <Typography align='left' variant='p' sx={{fontSize:'12px'}}>12th ward, Bhanugudi</Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{pt:1,px:2,display:'flex',justifyContent:'space-between',gap:2}}>
+                  {/* <ButtonGroup variant='text'> */}
+                  <Button sx={{bgcolor:active==='one'?'#EAE5FF':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,fontSize: '12px',fontWeight:'bold'}} size='medium' onClick={() => handleButton('one')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }}>For you</Typography>  </Button>
+                  <Button sx={{bgcolor:active==='two'?'rgb(249, 244, 220)':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,}} size='medium' onClick={() => handleButton('two')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }} >events</Typography>  </Button>
+                  <Button sx={{bgcolor:active==='three'?'#EAE5FF':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,}} size='medium' onClick={() => handleButton('three')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }} >movies</Typography>  </Button>
+                  {/* </ButtonGroup> */}
+                </Box>
               </Box>
               <Box>
-                <Typography align='left' variant='h6' sx={{ fontWeight: 'bold' }}>Kakinada</Typography>
-                <Typography align='left' variant='p'>12th ward, Bhanugudi</Typography>
+                <Box sx={{ display: 'center', justifyContent: 'center' }}>
+
+                  <Search sx={{ border: "1px solid grey", borderRadius: 3, }}>
+                    <SearchIconWrapper>
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                    sx={{width:'393px',height:'45px'}}
+                      placeholder="Search for events, movies..."
+                      inputProps={{ 'aria-label': 'search' }}
+                    />
+                  </Search>
+
+                  <Box sx={{ flexGrow: 1 }} />
+                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <IconButton
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      {/* <AccountCircle /> */}
+                      <AccountCircleOutlinedIcon />
+                    </IconButton>
+                  </Box>
+                  <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                      size="large"
+                      aria-label="show more"
+                      aria-controls={mobileMenuId}
+                      aria-haspopup="true"
+                      onClick={handleMobileMenuOpen}
+                      color="inherit"
+                    >
+                      <MoreIcon />
+                    </IconButton>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
 
-            <Box>
-              <ButtonGroup variant='text'>
-                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >for you</Typography>  </Button>
-                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >events</Typography>  </Button>
-                <Button size='small'><Typography variant='h6' sx={{ fontSize: '14px' }} >movies</Typography>  </Button>
-              </ButtonGroup>
-            </Box>
-            <Box sx={{ display: 'center', justifyContent: 'center' }}>
+            </Toolbar>
+          </AppBar>
+        </Box>
+        <Box sx={{ display: { sm: 'block', md: 'none', xs: 'block', lg: 'none' } }}>
+          <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
+            <Toolbar>
+              <Box sx={{ display: { sm: 'flex', xs: 'grid', md: 'flex', lg: 'flex' }, justifyContent: 'center' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
+                    <LocationOnOutlinedIcon />
+                  </Box>
+                  <Box>
+                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold' }}>Kakinada</Typography>
+                    <Typography align='left' variant='p'>12th ward, Bhanugudi</Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'center', justifyContent: 'center' }}>
 
-              <Search sx={{ border: "1px solid grey", borderRadius: 2, }}>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </Search>
+                  <Search sx={{ border: "1px solid grey", borderRadius: 2, }}>
+                    <SearchIconWrapper>
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                      width="100%"
+                      placeholder="Search…"
+                      inputProps={{ 'aria-label': 'search' }}
+                    />
+                  </Search>
 
-              <Box sx={{ flexGrow: 1 }} />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  {/* <AccountCircle /> */}
-                  <AccountCircleOutlinedIcon />
-                </IconButton>
+                  <Box sx={{ flexGrow: 1 }} />
+                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <IconButton
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      {/* <AccountCircle /> */}
+                      <AccountCircleOutlinedIcon />
+                    </IconButton>
+                  </Box>
+                  <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                      size="large"
+                      aria-label="show more"
+                      aria-controls={mobileMenuId}
+                      aria-haspopup="true"
+                      onClick={handleMobileMenuOpen}
+                      color="inherit"
+                    >
+                      <MoreIcon />
+                    </IconButton>
+                  </Box>
+                </Box>
               </Box>
-              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="show more"
-                  aria-controls={mobileMenuId}
-                  aria-haspopup="true"
-                  onClick={handleMobileMenuOpen}
-                  color="inherit"
-                >
-                  <MoreIcon />
-                </IconButton>
-              </Box>
-            </Box>
 
-
-          </Toolbar>
-        </AppBar>
-
+            </Toolbar>
+          </AppBar>
+        </Box>
         {renderMobileMenu}
         {renderMenu}
 

@@ -69,6 +69,9 @@ const dispatch=useDispatch();
   const handleEvent=(name)=>{
     navigate(`/events/${name}`);
   }
+  const handleArtist=(name)=>{
+    navigate(`/artist/${name}`)
+  }
   useEffect(() => {
     dispatch(getProductsDataActionInitiate());
   }, [dispatch]);
@@ -85,7 +88,7 @@ const districtId = Object.keys(districtDocs)[0];
 const movies = districtDocs?.[districtId]?.movies || [];
 const artists = districtDocs?.[districtId]?.artists || [];
 const events = districtDocs?.[districtId]?.events || [];
-const topEvents = districtDocs?.[districtId]?.["top-events"];
+const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
 
 // const topEvents=districtDocs?.[districtId]?.top-events || [];
 console.log("districtIwwwwwwwwd:", movies);
@@ -111,14 +114,33 @@ let eslides=4;
     });
     console.log(mslides)
   return (
+    <div className='home-page'>
     <Container >
     
     <Box sx={{mt:8}}>
         <Typography variant='h5' align='left'>Movies of the week</Typography>
       <Box sx={{mt:2}}>
     <Swiper
-        slidesPerView={mslides}
-        spaceBetween={30}
+        breakpoints={{
+          0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        600:{
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+         900:{
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+        1200: {
+          slidesPerView: 5,
+          spaceBetween: 40,
+        },
+        }}
+        // slidesPerView={mslides}
+        // spaceBetween={30}
         freeMode={true}
         modules={[FreeMode, Pagination]}
         className="mySwiper"
@@ -151,8 +173,24 @@ let eslides=4;
     <Typography variant='h5' align='left'>India's top Events</Typography>
 
     <Swiper
-        slidesPerView={eslides}
-        spaceBetween={30}
+      breakpoints={{
+          0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        600:{
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+         900:{
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        }}
         freeMode={true}
 
         modules={[FreeMode, Pagination]}
@@ -183,16 +221,85 @@ let eslides=4;
       </Swiper>
     </Box>
 
+    
+    <Box sx={{mt:5,pt:2,pb:2}}>
+    <Typography variant='h5' align='left'>India's top Events</Typography>
+
+    <Swiper
+      breakpoints={{
+          0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        600:{
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+         900:{
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        }}
+        freeMode={true}
+
+        modules={[FreeMode, Pagination]}
+        className="mySwiper"
+        
+      >
+        {topEvents.map((top,index)=>(
+          <SwiperSlide>
+      <Card sx={{ maxWidth: 345,borderRadius:3,mb:2 }}>
+     
+      <CardMedia
+        component="img"
+        height="420"
+        width="294"
+        
+        image={top.image}
+        alt="Paella dish"
+      />
+      <CardContent sx={{height:150}}>
+          <Typography sx={{ marginBottom: 2,fontWeight:'bold',fontFamily:'Be Vietnam Pro, san-seriff' }}>{top.name}</Typography>
+          <Typography>
+           {top.date} | {top.location}
+          </Typography>
+        </CardContent>
+    </Card>
+    </SwiperSlide>
+  ))}
+      </Swiper>
+    </Box>
+
     <Box sx={{pb:4}}>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
+      breakpoints={{
+          0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        600:{
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+         900:{
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+        }}
         freeMode={true}
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
         {artists.map((artist,index)=>(
-          <SwiperSlide>
+          <SwiperSlide onClick={()=>handleArtist(artist.name)}>
           
       <img style={{borderRadius:'100%'}} src={artist.image} height="190" width="190"/>
        <Typography variant='h6'> {artist.name}</Typography> 
@@ -202,6 +309,7 @@ let eslides=4;
     </Box>
     </Box>
     </Container>
+    </div>
   )
 }
 

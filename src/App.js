@@ -12,14 +12,16 @@ import EventDetails from './components/Ui/EventDetails';
 function App() {
   return (
     <div className="App" style={{backgroundColor:'linear-gradient(to bottom, #B7A3E3, white)'}}>
-      <NavBar />
+        <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movies/:id' element={<MovieDetails />} />
         <Route path='/events/:id' element={<EventDetails/>}/>
-        <Route path='/artist' element={<Artist />} />
+        <Route path='/artist/:id' element={<Artist />} />
         <Route path='/payment' element={<Payment />} />
       </Routes>
+      {/* <Payment/> */}
+      
       <Footer/>
     </div>
   );

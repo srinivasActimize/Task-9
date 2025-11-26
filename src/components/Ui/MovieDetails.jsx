@@ -25,23 +25,27 @@ const MovieDetails = () => {
   const movie = movies.find((item) => item.title === id)
   console.log('hhh', movie)
   return (
+    <div className='events-page'>
     <Container>
-      <Box sx={{ display: 'flex', justifyContent: 'center', pt: 8 }} gap={4}>
+      <Box sx={{ display:{sm:'grid',xs:'grid',md:'flex',lg:'flex'}, justifyContent: 'center', pt: 8 }} gap={4}>
         <Box sx={{ width: 'auto', height: 'auto', }}>
           <img src={movie.image} width='250' height='330' alt='pic' />
         </Box>
-        <Box sx={{display:'grid',justifyContent:'grid-start', border: '1px solid black', height: 272, width: 320,p:2 }} >
-         <Box sx={{display:'flex',justifyContent:'flex-start'}}> <Typography variant='h4'>Name: {movie.title}</Typography></Box>
-          <Box sx={{display:'flex',justifyContent:'flex-start'}}><CardMembershipIcon /><b>Certificate :</b> <Typography sx={{fontSize:'20px',pl:1}} variant='h6'>{movie.certificate}</Typography></Box>
-          <Box sx={{display:'flex',justifyContent:'flex-start'}}><StarPurple500Icon /><b>Rating:</b>  <Typography sx={{fontSize:'20px',pl:1}} variant='p'>{movie.rating}/5</Typography></Box>
-          <Box  sx={{display:'flex',justifyContent:'flex-start'}}><b>Language: </b><Typography variant='p' sx={{fontSize:'20px',pl:1}}>{movie.language}</Typography></Box>
-          <Button variant='contained'>Book Tickets</Button>
+        <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey',borderRadius:5, height: 272, width: 320, px:2,pt:2 }} >
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4'>Name: {movie.title}</Typography></Box>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CardMembershipIcon /><b>Certificate :</b> <Typography sx={{ fontSize: '20px', pl: 1 }} variant='h6'>{movie.certificate}</Typography></Box>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><StarPurple500Icon /><b>Rating:</b>  <Typography sx={{ fontSize: '20px', pl: 1 }} variant='p'>{movie.rating}/5</Typography></Box>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><b>Language: </b><Typography variant='p' sx={{ fontSize: '20px', pl: 1 }}>{movie.language}</Typography></Box>
+          <Box>
+            <Button sx={{bgcolor:'#9784e1ff'}} size='small' variant='contained'>Book Tickets</Button>
+          </Box>
         </Box>
       </Box>
-     
+
 
 
     </Container>
+    </div>
   )
 }
 
