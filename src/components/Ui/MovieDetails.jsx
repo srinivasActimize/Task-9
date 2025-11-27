@@ -26,13 +26,27 @@ const MovieDetails = () => {
   console.log('hhh', movie)
   return (
     <div className='events-page'>
-    <Container>
+    <Container >
       <Box sx={{ display:{sm:'grid',xs:'grid',md:'flex',lg:'flex'}, justifyContent: 'center', pt: 8 }} gap={4}>
-        <Box sx={{ width: 'auto', height: 'auto', }}>
-          <img src={movie.image} width='250' height='330' alt='pic' />
-        </Box>
-        <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey',borderRadius:5, height: 272, width: 320, px:2,pt:2 }} >
-          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4'>Name: {movie.title}</Typography></Box>
+         <Box
+              component="img"
+              src={movie.image}
+              alt="Responsive Image"
+              sx={{
+                borderRadius:5,
+                width: '100%',
+                height: 'auto', // Maintain aspect ratio
+                maxWidth: {
+                  xs: '280px',
+                  sm: '200px', 
+                  md: '300px', 
+                  lg: '350px', // Max width for large screens
+                  xl: '400px', // Max width for extra-large screens
+                },
+              }}
+            />
+        <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey',borderRadius:5, height: 272, width:{xs:'250px',lg:'350px'}, px:2,pt:2 }} >
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4' align='left'>Name: {movie.title}</Typography></Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CardMembershipIcon /><b>Certificate :</b> <Typography sx={{ fontSize: '20px', pl: 1 }} variant='h6'>{movie.certificate}</Typography></Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><StarPurple500Icon /><b>Rating:</b>  <Typography sx={{ fontSize: '20px', pl: 1 }} variant='p'>{movie.rating}/5</Typography></Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><b>Language: </b><Typography variant='p' sx={{ fontSize: '20px', pl: 1 }}>{movie.language}</Typography></Box>

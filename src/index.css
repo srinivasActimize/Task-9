@@ -20,6 +20,7 @@ body {
 .events-page {
   background: linear-gradient(180deg, #fff9d9 0%, #ffffff 60%);
   min-height: 100vh;
+  padding-top: 20px;
 }
 .home-page {
   background: linear-gradient(180deg, #f5f1ff 0%, #ffffff 60%);

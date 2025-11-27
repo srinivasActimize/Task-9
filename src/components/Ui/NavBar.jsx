@@ -23,6 +23,11 @@ import { useState } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
 import { blue } from '@mui/material/colors';
+import { GoogleLogin, googleLogout } from '@react-oauth/google'
+// import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
+import Modal from '@mui/material/Modal';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -38,6 +43,27 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  // width:{},
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  display: 'grid',
+  justifyContent: 'center',
+  backgroundImage: `url(https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764239244/cff25f32c0fd4d4dadae03014b9c1bed1736642601_ip7dkf.png)`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover", // Adjust as needed (e.g., 'contain', '100% 100%')
+  backgroundPosition: "center",
+  // width:'30%',
+  gap: 3
+};
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -64,6 +90,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [user,setUser]=useState();
   const [active, setActive] = useState('one');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -75,6 +106,15 @@ export default function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleLogOut = () => {
+    googleLogout();
+    console.log('logged out')
+  }
+  const handleLoginSuccess = (credentialResponse) => {
+    console.log(credentialResponse);
+    setUser(jwtDecode(credentialResponse.credential))
+    navigate('/');
+  };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -92,18 +132,12 @@ export default function NavBar() {
   }
   const navigate = useNavigate();
 
+  React.useEffect(()=>{
+    console.log('fd',user);
+  },[user])
   const handleBack = () => {
     navigate('/');
   }
-  const useStyles = makeStyles({
-    activeButton: {
-      '&:active': {
-        backgroundColor: 'darkblue', // Example: Change background on active state
-        color: 'white',
-      },
-    },
-  });
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -122,7 +156,7 @@ export default function NavBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleOpen}>My account</MenuItem>
     </Menu>
   );
 
@@ -152,6 +186,7 @@ export default function NavBar() {
         <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
+      
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -159,6 +194,7 @@ export default function NavBar() {
           aria-haspopup="true"
           color="inherit"
         >
+       
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
@@ -174,7 +210,7 @@ export default function NavBar() {
           <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
-              <Box sx={{display: 'flex', justifyContent: 'center'}}>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
                   <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' onClick={handleBack} />
                 </Box>
@@ -184,16 +220,16 @@ export default function NavBar() {
                     <LocationOnOutlinedIcon />
                   </Box>
                   <Box>
-                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold',fontSize:'16px' }} >Kakinada</Typography>
-                    <Typography align='left' variant='p' sx={{fontSize:'12px'}}>12th ward, Bhanugudi</Typography>
+                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold', fontSize: '16px' }} >Kakinada</Typography>
+                    <Typography align='left' variant='p' sx={{ fontSize: '12px' }}>12th ward, Bhanugudi</Typography>
                   </Box>
                 </Box>
 
-                <Box sx={{pt:1,px:2,display:'flex',justifyContent:'space-between',gap:2}}>
+                <Box sx={{ pt: 1, px: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
                   {/* <ButtonGroup variant='text'> */}
-                  <Button sx={{bgcolor:active==='one'?'#EAE5FF':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,fontSize: '12px',fontWeight:'bold'}} size='medium' onClick={() => handleButton('one')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }}>For you</Typography>  </Button>
-                  <Button sx={{bgcolor:active==='two'?'rgb(249, 244, 220)':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,}} size='medium' onClick={() => handleButton('two')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }} >events</Typography>  </Button>
-                  <Button sx={{bgcolor:active==='three'?'#EAE5FF':'transparent',color:'rgb(35, 18, 104)',borderRadius:20,}} size='medium' onClick={() => handleButton('three')}><Typography  sx={{ fontSize: '12px',fontWeight:'bold' }} >movies</Typography>  </Button>
+                  <Button sx={{ bgcolor: active === 'one' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, fontSize: '12px', fontWeight: 'bold' }} size='medium' onClick={() => handleButton('one')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }}>For you</Typography>  </Button>
+                  <Button sx={{ bgcolor: active === 'two' ? 'rgb(249, 244, 220)' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, }} size='medium' onClick={() => handleButton('two')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }} >events</Typography>  </Button>
+                  <Button sx={{ bgcolor: active === 'three' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, }} size='medium' onClick={() => handleButton('three')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }} >movies</Typography>  </Button>
                   {/* </ButtonGroup> */}
                 </Box>
               </Box>
@@ -205,7 +241,7 @@ export default function NavBar() {
                       <SearchIcon />
                     </SearchIconWrapper>
                     <StyledInputBase
-                    sx={{width:'393px',height:'45px'}}
+                      sx={{ width: '393px', height: '45px' }}
                       placeholder="Search for events, movies..."
                       inputProps={{ 'aria-label': 'search' }}
                     />
@@ -213,7 +249,8 @@ export default function NavBar() {
 
                   <Box sx={{ flexGrow: 1 }} />
                   <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <IconButton
+                     {user?.picture && <img src={user?.picture} width='50px'height='50px' style={{borderRadius:5}} alt='abd'/>}
+                    {!user?.picture && <IconButton
                       size="large"
                       edge="end"
                       aria-label="account of current user"
@@ -221,10 +258,11 @@ export default function NavBar() {
                       aria-haspopup="true"
                       onClick={handleProfileMenuOpen}
                       color="inherit"
+
                     >
-                      {/* <AccountCircle /> */}
+                     
                       <AccountCircleOutlinedIcon />
-                    </IconButton>
+                    </IconButton>}
                   </Box>
                   <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
@@ -307,6 +345,61 @@ export default function NavBar() {
         {renderMenu}
 
       </Box>
+
+      <Modal
+
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+
+        <Box sx={style}>
+          <Box
+            component="img"
+            src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763992200/17466982242413_o1zwur.svg'
+            alt="Responsive Image"
+            sx={{
+              width: '50%',
+              height: 'auto', // Maintain aspect ratio
+              maxWidth: {
+                xs: '280px',
+                sm: '200px',
+                md: '300px',
+                lg: '350px', // Max width for large screens
+                xl: '400px', // Max width for extra-large screens
+              },
+            }}
+            
+          />
+          <Box sx={{ display: 'grid', justifyContent: 'center' }} spacing={2} gap={1}>
+            <Typography variant='p' sx={{ fontSize: {lg:'22px',sm:'16px',xs:'14px'}, fontWeight: 'bold' }} align='center'>Enter your Email Address</Typography>
+            <Typography variant='p' sx={{ color: '#FFDEB9', fontSize: '14px' }} align='center'>If you don't have account yet , we'll create one for you</Typography>
+          </Box>
+
+          <Box sx={{ display: 'grid', justifyContent: 'center' }} gap={3}>
+            <Box>
+              <GoogleLogin
+                onSuccess={handleLoginSuccess}
+                onError={() => console.log('login failed')} />
+            </Box>
+            <Box>
+              <Button sx={{ bgcolor: 'black', color: 'white', width: '100%' }}>Continue</Button>
+            </Box>
+            <Box >
+              <Typography variant='p' sx={{ color: '#FFDEB9' }}>By continuing, you agree to our</Typography>
+              <br />
+              <a href='https://www.district.in/policies/terms-of-service' style={{ textDecoration: 'none',color:'#E49BA6' }}>Terms and Conditions </a>
+              <a href='https://www.district.in/policies/privacy' style={{ textDecoration: 'none',color:'#E49BA6'  }}>Privacy Policy</a>
+
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
+
+
+
+
 
     </>
 

@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Ui/Home';
 import MovieDetails from './components/Ui/MovieDetails';
@@ -20,9 +20,8 @@ function App() {
         <Route path='/artist/:id' element={<Artist />} />
         <Route path='/payment' element={<Payment />} />
       </Routes>
-      {/* <Payment/> */}
-      
       <Footer/>
+      {/* <Payment/> */}
     </div>
   );
 }

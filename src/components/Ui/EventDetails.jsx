@@ -1,12 +1,10 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProductsDataActionInitiate } from '../redux/Action/getItemsAction';
 import Typography from '@mui/material/Typography';
-import CardMembershipIcon from '@mui/icons-material/CardMembership';
-import StarPurple500Icon from '@mui/icons-material/StarPurple500';
 import Button from '@mui/material/Button';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -34,20 +32,21 @@ const EventDetails = () => {
   console.log('hhh', event)
   return (
     <Container>
-      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'center', py: 8 }} gap={4}>
+      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'space-around', py: 8 }} gap={4}>
         <Grid Container spacing={2}>
-          <Grid size={4}>
+          <Grid size={4} >
             <Box
               component="img"
               src={event.image}
               alt="Responsive Image"
               sx={{
+                borderRadius:5,
                 width: '100%',
                 height: 'auto', // Maintain aspect ratio
                 maxWidth: {
-                  xs: '300px', // Max width for extra-small screens
-                  sm: '200px', // Max width for small screens
-                  md: '400px', // Max width for medium screens
+                  xs: '300px',
+                  sm: '200px', 
+                  md: '400px', 
                   lg: '450px', // Max width for large screens
                   xl: '600px', // Max width for extra-large screens
                 },
@@ -88,11 +87,11 @@ const EventDetails = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ display: { lg: 'flex', sm: 'grid' }, justifyContent: 'space-between' }}>
+      <Box sx={{ display: { lg: 'flex', sm: 'grid' }, justifyContent: 'space-around' }}>
         <Box>
-          <Box sx={{ display: 'grid', justifyContent: 'center', height: 'auto', width: { sm: 300 }, my: 4,mx:10 }}>
+          <Box sx={{ display: 'grid', justifyContent: {lg:'center',xs:'left'}, height: 'auto', width: { sm:'300px',xs:'280px',lg:'400px',md:'300px' }, my: 4,}}>
             <Typography variant='p' sx={{ fontWeight: 'none', fontWeight: 'bold' }} align='left' >About the event </Typography>
-            <Typography variant='p' align='left' sx={{ width:'400px', fontSize: '16px', fontFamily: 'be vietnam pro san-serif' }}>{event.about}</Typography>
+            <Typography variant='p' align='left' sx={{ width:'100%', fontSize: '16px', fontFamily: 'be vietnam pro san-serif' }}>{event.about}</Typography>
           </Box>
         </Box>
         <Box sx={{ width: { lg: '400px', md: '350px', sm: '250px', xs: '300px' } }}>
