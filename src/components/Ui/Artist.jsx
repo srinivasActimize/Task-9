@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import Grid from '@mui/material/Grid'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsDataActionInitiate } from '../redux/Action/getItemsAction';
 import Box from '@mui/material/Box';
@@ -34,13 +33,13 @@ const artist=artists.find((item)=>item.name===id);
               sx={{
                 borderRadius:5,
                 width: '100%',
-                height: 'auto', // Maintain aspect ratio
+                height: 'auto', 
                 maxWidth: {
-                  xs: '300px', // Max width for extra-small screens
-                  sm: '200px', // Max width for small screens
-                  md: '400px', // Max width for medium screens
-                  lg: '450px', // Max width for large screens
-                  xl: '600px', // Max width for extra-large screens
+                  xs: '300px', 
+                  sm: '200px', 
+                  md: '400px', 
+                  lg: '450px', 
+                  xl: '600px', 
                 },
                 mr:2
               }}

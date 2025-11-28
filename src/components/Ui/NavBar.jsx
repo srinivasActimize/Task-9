@@ -6,25 +6,17 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Button from '@mui/material/Button';
-import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
-import { blue } from '@mui/material/colors';
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
-// import jwt_decode from 'jwt-decode';
 import { jwtDecode } from 'jwt-decode';
 
 import Modal from '@mui/material/Modal';
@@ -50,9 +42,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  // width:{},
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  borderRadius:5,
   boxShadow: 24,
   p: 4,
   display: 'grid',
@@ -249,7 +240,7 @@ export default function NavBar() {
 
                   <Box sx={{ flexGrow: 1 }} />
                   <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                     {user?.picture && <img src={user?.picture} width='50px'height='50px' style={{borderRadius:5}} alt='abd'/>}
+                     {user?.picture && <img src={user?.picture} width='40px'height='40px' style={{borderRadius:'100%'}} alt='abd'/>}
                     {!user?.picture && <IconButton
                       size="large"
                       edge="end"
@@ -258,10 +249,11 @@ export default function NavBar() {
                       aria-haspopup="true"
                       onClick={handleProfileMenuOpen}
                       color="inherit"
+                      sx={{bgcolor:'grey'}}
 
                     >
                      
-                      <AccountCircleOutlinedIcon />
+                      <AccountCircleOutlinedIcon  />
                     </IconButton>}
                   </Box>
                   <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -347,7 +339,7 @@ export default function NavBar() {
       </Box>
 
       <Modal
-
+      
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -355,6 +347,7 @@ export default function NavBar() {
       >
 
         <Box sx={style}>
+        <Box sx={{display:'flex',justifyContent:'center'}}>
           <Box
             component="img"
             src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763992200/17466982242413_o1zwur.svg'
@@ -372,6 +365,7 @@ export default function NavBar() {
             }}
             
           />
+          </Box>
           <Box sx={{ display: 'grid', justifyContent: 'center' }} spacing={2} gap={1}>
             <Typography variant='p' sx={{ fontSize: {lg:'22px',sm:'16px',xs:'14px'}, fontWeight: 'bold' }} align='center'>Enter your Email Address</Typography>
             <Typography variant='p' sx={{ color: '#FFDEB9', fontSize: '14px' }} align='center'>If you don't have account yet , we'll create one for you</Typography>

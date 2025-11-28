@@ -5,7 +5,6 @@ import Home from './components/Ui/Home';
 import MovieDetails from './components/Ui/MovieDetails';
 import Artist from './components/Ui/Artist';
 import NavBar from './components/Ui/NavBar';
-import Payment from './components/Ui/Payment';
 import Footer from './components/Ui/Footer';
 import EventDetails from './components/Ui/EventDetails';
 
@@ -18,10 +17,8 @@ function App() {
         <Route path='/movies/:id' element={<MovieDetails />} />
         <Route path='/events/:id' element={<EventDetails/>}/>
         <Route path='/artist/:id' element={<Artist />} />
-        <Route path='/payment' element={<Payment />} />
       </Routes>
       <Footer/>
-      {/* <Payment/> */}
     </div>
   );
 }
