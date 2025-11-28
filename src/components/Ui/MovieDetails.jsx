@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProductsDataActionInitiate } from '../redux/Action/getItemsAction';
@@ -8,56 +8,55 @@ import Typography from '@mui/material/Typography';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import StarPurple500Icon from '@mui/icons-material/StarPurple500';
 import Button from '@mui/material/Button';
-import { useRazorpay } from 'react-razorpay';
 
 const MovieDetails = () => {
+
   const { id } = useParams();
-  const {  Razorpay } = useRazorpay();
   const dispatch = useDispatch();
-  const data = useSelector(temp => temp.getproductsdata);
+  const dataa = useSelector(temp => temp.getproductsdata);
+
   useEffect(() => {
-    dispatch(getProductsDataActionInitiate())
-  }, [dispatch])
+    dispatch(getProductsDataActionInitiate());
+  }, [dispatch]);
 
-  const districtDocs = data.data;
-
+  const districtDocs = dataa.data;
   const districtId = Object.keys(districtDocs)[0];
   const movies = districtDocs?.[districtId]?.movies || [];
-  console.log('moviedetails', movies)
-  const movie = movies.find((item) => item.title === id)
-  console.log('hhh', movie)
+  const movie = movies.find((item) => item.title === id);
+  const handlePayment = async () => {
+    
+      const options = {
+        key: "rzp_test_Rl6zFhLRzvwqro",  
+        amount: 170*100,
+        currency: 'INR',
+        name: "Movie Ticket Booking",
+        description: `Booking for ${movie.title}`,
+        // order_id: data.id,
+        handler: function (response) {
+          alert("Payment Successful!");
+          console.log("Payment Response:", response);
+        },
+        prefill: {
+          name: "Srinu",
+          email: "srinu@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#8B5CF6",
+        },
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+  }
 
-
-
-  const handlePayment = () => {
-    const options = {
-      key: "YOUR_RAZORPAY_KEY",
-      amount: 50000, // Amount in paise
-      currency: "INR",
-      name: "Test Company",
-      description: "Test Transaction",
-      order_id: "order_9A33XWu170gUtm", // Generate order_id on server
-      handler: (response) => {
-        console.log(response);
-        alert("Payment Successful!");
-      },
-      prefill: {
-        name: "John Doe",
-        email: "john.doe@example.com",
-        contact: "9999999999",
-      },
-      theme: {
-        color: "#F37254",
-      },
-    };
-
-    const razorpayInstance = new Razorpay(options);
-    razorpayInstance.open();
-  };
   return (
     <div className='events-page'>
-      <Container >
-        <Box sx={{ display: { sm: 'grid', xs: 'grid', md: 'flex', lg: 'flex' }, justifyContent: 'center', pt: 8 }} gap={4}>
+      <Container>
+        <Box
+          sx={{ display: { sm: 'grid', xs: 'grid', md: 'flex', lg: 'flex' }, justifyContent: 'center', pt: 8 }}
+          gap={4}
+        >
+          {/* Movie Image */}
           <Box
             component="img"
             src={movie.image}
@@ -65,30 +64,43 @@ const MovieDetails = () => {
             sx={{
               borderRadius: 5,
               width: '100%',
-              height: 'auto', // Maintain aspect ratio
-              maxWidth: {
-                xs: '280px',
-                sm: '200px',
-                md: '300px',
-                lg: '350px', // Max width for large screens
-                xl: '400px', // Max width for extra-large screens
-              },
+              height: 'auto',
+              maxWidth: { xs: '280px', sm: '200px', md: '300px', lg: '350px', xl: '400px' },
             }}
           />
-          <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey', borderRadius: 5, height: 272, width: { xs: '250px', lg: '350px' }, px: 2, pt: 2 }} >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4' align='left'>Name: {movie.title}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CardMembershipIcon /><b>Certificate :</b> <Typography sx={{ fontSize: '20px', pl: 1 }} variant='h6'>{movie.certificate}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><StarPurple500Icon /><b>Rating:</b>  <Typography sx={{ fontSize: '20px', pl: 1 }} variant='p'>{movie.rating}/5</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><b>Language: </b><Typography variant='p' sx={{ fontSize: '20px', pl: 1 }}>{movie.language}</Typography></Box>
+
+          <Box
+            sx={{
+              display: 'grid',
+              justifyContent: 'grid-start',
+              border: '1px solid grey',
+              borderRadius: 5,
+              height: 272,
+              width: { xs: '250px', lg: '350px' },
+              px: 2,
+              pt: 2
+            }}
+          >
+            <Box><Typography variant='h4'>Name: {movie.title}</Typography></Box>
+            <Box><CardMembershipIcon /><b>Certificate :</b> <Typography sx={{ pl: 1 }}>{movie.certificate}</Typography></Box>
+            <Box><StarPurple500Icon /><b>Rating:</b> <Typography sx={{ pl: 1 }}>{movie.rating}/5</Typography></Box>
+            <Box><b>Language: </b><Typography sx={{ pl: 1 }}>{movie.language}</Typography></Box>
+
             <Box>
-              <Button sx={{ bgcolor: '#9784e1ff' }} size='small' variant='contained' onClick={handlePayment}>Book Tickets</Button>
+              <Button
+                sx={{ bgcolor: '#9784e1ff' }}
+                size='small'
+                variant='contained'
+                onClick={handlePayment}
+              >
+                Book Tickets
+              </Button>
             </Box>
           </Box>
         </Box>
-
       </Container>
     </div>
-  )
-}
+  );
+};
 
 export default MovieDetails;
