@@ -97,10 +97,6 @@ export default function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLogOut = () => {
-    googleLogout();
-    console.log('logged out')
-  }
   const handleLoginSuccess = (credentialResponse) => {
     console.log(credentialResponse);
     setUser(jwtDecode(credentialResponse.credential))
@@ -203,7 +199,7 @@ export default function NavBar() {
 
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
-                  <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' onClick={handleBack} />
+                  <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' alt='logo' onClick={handleBack} />
                 </Box>
 
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>

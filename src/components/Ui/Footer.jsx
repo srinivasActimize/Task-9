@@ -45,7 +45,7 @@ const Footer = () => {
                    <Box sx={{ bgcolor: 'black', px: 2, py: 5, display: 'grid', justifyContent: 'center', }}>
                 <Box sx={{ display: 'grid', justifyContent: 'center', gap: 8, bgcolor: "black", color: 'white' }} >
                     <Box >
-                        <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763992200/17466982242413_o1zwur.svg' height="100" width="100" />
+                        <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763992200/17466982242413_o1zwur.svg' alt='logo' height="100" width="100" />
                     </Box>
                     <Box sx={{ display: 'grid', justifyContent: 'center', gap: 4,pt:5 }}>
                         <Typography variant='p'>Terms & Conditions</Typography>
@@ -55,7 +55,7 @@ const Footer = () => {
                     </Box>
                     <Box sx={{display:'grid',justifyContent:'center'}}>
                         <Box>
-                        <img style={{borderRadius:4}} src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763988769/17628835501492_sp20h6.svg' height="100" width="100" />
+                        <img style={{borderRadius:4}} src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763988769/17628835501492_sp20h6.svg'alt='logo' height="100" width="100" />
                         </Box>
                         <Box>
                         <Typography variant='p'>Scan to download the app</Typography>

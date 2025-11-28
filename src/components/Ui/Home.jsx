@@ -75,26 +75,7 @@ const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
 // const topEvents=districtDocs?.[districtId]?.top-events || [];
 console.log("districtIwwwwwwwwd:", movies);
 console.log("moviesss:", topEvents);
-let mslides=5;
-let eslides=4;
-    window.addEventListener("resize", function() {
-      const width=this.window.innerWidth
-        if(width<321){
-          mslides=2
-          eslides=1
-          return
-        }
-        else if(width<769){
-          mslides=4
-          eslides=2
-          return
-        }
-        else{
-          mslides=6
-          eslides=4
-        }
-    });
-    console.log(mslides)
+
   return (
     <div className='home-page'>
     <Container >
@@ -283,7 +264,7 @@ let eslides=4;
         {artists.map((artist,index)=>(
           <SwiperSlide onClick={()=>handleArtist(artist.name)}>
           
-      <img style={{borderRadius:'100%'}} src={artist.image} height="190" width="190"/>
+      <img style={{borderRadius:'100%'}} alt='name' src={artist.image} height="190" width="190"/>
        <Typography variant='h6'> {artist.name}</Typography> 
     </SwiperSlide>
   ))}

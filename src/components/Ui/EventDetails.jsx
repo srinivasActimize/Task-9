@@ -90,7 +90,7 @@ const EventDetails = () => {
       <Box sx={{ display: { lg: 'flex', sm: 'grid' }, justifyContent: 'space-around' }}>
         <Box>
           <Box sx={{ display: 'grid', justifyContent: {lg:'center',xs:'left'}, height: 'auto', width: { sm:'300px',xs:'280px',lg:'400px',md:'300px' }, my: 4,}}>
-            <Typography variant='p' sx={{ fontWeight: 'none', fontWeight: 'bold' }} align='left' >About the event </Typography>
+            <Typography variant='p' sx={{ fontWeight: 'bold' }} align='left' >About the event </Typography>
             <Typography variant='p' align='left' sx={{ width:'100%', fontSize: '16px', fontFamily: 'be vietnam pro san-serif' }}>{event.about}</Typography>
           </Box>
         </Box>
