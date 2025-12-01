@@ -16,6 +16,10 @@ const Artist = () => {
     dispatch(getProductsDataActionInitiate())
   },[dispatch])
   
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
+  
 const districtDocs = d.data;
 
 const districtId = Object.keys(districtDocs)[0];
@@ -24,8 +28,8 @@ const artist=artists.find((item)=>item.name===id);
   console.log('datais',artists);
   return (
     <div style={{marginTop:'50px'}}>
-      <Box sx={{display:{lg:'flex',sm:'grid',xs:'grid'},justifyContent:'center',alignItems:'center',mx:6,my:8}}>
-     
+      <Box sx={{display:{lg:'flex',md:'flex',sm:'flex',xs:'grid'},justifyContent:'center',alignItems:'center',mx:6,my:8}}>
+      {/* artist image */}
          <Box
               component="img"
               src={artist.image}
@@ -44,7 +48,7 @@ const artist=artists.find((item)=>item.name===id);
                 mr:2
               }}
             />
- 
+       {/* about  artist */}
        <Box sx={{display:'grid',justifyContent:'center',width:{lg:'400',sm:'100',xs:'100',md:'200'},height:{lg:'192',sm:'50',xs:'50'}}} >
         <Typography variant='h5' sx={{fontWeight:'bold',fontSize:'20px',fontFamily:'be vietnam pro'}} align='left'>{artist.name}</Typography>
         <Typography variant='p' align='left' sx={{fontSize:'16px',fontFamily:'be vietnam pro'}}>{artist.about}</Typography>

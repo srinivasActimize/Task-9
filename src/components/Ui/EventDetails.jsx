@@ -30,11 +30,17 @@ const EventDetails = () => {
   console.log('eventss', events)
   const event = events.find((item) => item.title === id)
   console.log('hhh', event)
+  
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
+  
   return (
     <Container>
-      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'space-around', py: 8 }} gap={4}>
+      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'space-around', mt:{xs:14,sm:8 ,lg:4}  }} gap={4}>
         <Grid Container spacing={2}>
           <Grid size={4} >
+            {/* event image */}
             <Box
               component="img"
               src={event.image}
@@ -54,9 +60,10 @@ const EventDetails = () => {
             />
           </Grid>
         </Grid>
+        {/* event details */}
         <Box sx={{ display: { lg: 'block', md: 'block', xs: 'none', sm: 'none' } }}>
-          <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey', borderRadius: 5, height: '300px', width: '400px', p: 2 }} >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4' align='left'>{event.title}</Typography></Box>
+          <Box sx={{ display: 'grid', justifyContent: 'grid-start',bgcolor:'white', border: '1px solid lightgrey', borderRadius: 5, height: '300px', width: '400px', p: 2 }} >
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography sx={{fontFamily:'be vietnam pro'}} variant='h4' align='left'>{event.title}</Typography></Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LabelImportantIcon fontSize='20px' /><Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CalendarTodayIcon fontSize='20px' />  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LocationOnOutlinedIcon fontSize='20px' /><Typography sx={{ fontSize: '14px', pl: 1 }} variant='h6' align='left'>{event.location}</Typography></Box>
@@ -70,8 +77,9 @@ const EventDetails = () => {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ display: { lg: 'none', md: 'none', sm: 'block', xs: 'block' } }}>
-          <Box sx={{ display: 'grid', justifyContent: 'grid-start', border: '1px solid grey', borderRadius: 5, height: 'auto', width: '250px', p: 2 }} >
+        {/* for responsive design */}
+        <Box sx={{ display: { lg: 'none', md: 'none', sm: 'block', xs: 'block' }, }}>
+          <Box sx={{ display: 'grid', justifyContent: 'grid-start',bgcolor:'white', border: '1px solid grey', borderRadius: 5, height: 'auto', width: '250px', p: 2 }} >
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4' align='left'>{event.title}</Typography></Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LabelImportantIcon /><Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CalendarTodayIcon />  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
@@ -87,14 +95,14 @@ const EventDetails = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ display: { lg: 'flex', sm: 'grid' }, justifyContent: 'space-around' }}>
+      <Box sx={{ display: { lg: 'flex',md:'flex', sm: 'flex',xs:'grid' }, justifyContent: 'space-around' }}>
         <Box>
           <Box sx={{ display: 'grid', justifyContent: {lg:'center',xs:'left'}, height: 'auto', width: { sm:'300px',xs:'280px',lg:'400px',md:'300px' }, my: 4,}}>
             <Typography variant='p' sx={{ fontWeight: 'bold' }} align='left' >About the event </Typography>
             <Typography variant='p' align='left' sx={{ width:'100%', fontSize: '16px', fontFamily: 'be vietnam pro san-serif' }}>{event.about}</Typography>
           </Box>
         </Box>
-        <Box sx={{ width: { lg: '400px', md: '350px', sm: '250px', xs: '300px' } }}>
+        <Box sx={{ width: { lg: '400px', md: '350px', sm: '250px', xs: '300px' },my:2 }}>
           <Accordion >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

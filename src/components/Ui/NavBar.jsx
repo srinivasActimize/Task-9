@@ -12,9 +12,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google'
 import { jwtDecode } from 'jwt-decode';
@@ -85,10 +85,18 @@ export default function NavBar() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [user,setUser]=useState();
+
+  const [user, setUser] = useState({});
   const [active, setActive] = useState('one');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  useEffect(() => {
+    const prof = localStorage.getItem('user');
+    if (prof) {
+      setUser(JSON.parse(prof));
+    }
+  }, []);  
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -97,11 +105,6 @@ export default function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLoginSuccess = (credentialResponse) => {
-    console.log(credentialResponse);
-    setUser(jwtDecode(credentialResponse.credential))
-    navigate('/');
-  };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -119,12 +122,25 @@ export default function NavBar() {
   }
   const navigate = useNavigate();
 
-  React.useEffect(()=>{
-    console.log('fd',user);
-  },[user])
   const handleBack = () => {
     navigate('/');
   }
+  const handleLogout=()=>{
+    setAnchorEl(null)
+    setUser('');
+  }
+  useEffect(()=>{
+    console.log(user)
+  },[user])
+  
+  const handleLoginSuccess = (credentialResponse) => {
+    console.log(credentialResponse);
+    const decodedUser = jwtDecode(credentialResponse.credential);
+    localStorage.setItem('user', JSON.stringify(decodedUser));
+    setUser(decodedUser);
+    navigate('/');
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -144,6 +160,7 @@ export default function NavBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleOpen}>My account</MenuItem>
+      <MenuItem onClick={handleLogout}>Log out</MenuItem>
     </Menu>
   );
 
@@ -181,51 +198,51 @@ export default function NavBar() {
           aria-haspopup="true"
           color="inherit"
         >
-       
-          <AccountCircle />
+        {user?.picture &&<Button sx={{borderRadius:100}} size='small' onClick={handleProfileMenuOpen}> <img src={user?.picture} width='30px' height='30px' style={{borderRadius:'100%'}} alt='prgfdsadfbnbvfdswdfghgfdeofile' /></Button>}
+        {!user?.picture&&  <AccountCircle />}
+         
         </IconButton>
         <p>Profile</p>
       </MenuItem>
     </Menu>
   );
-
+console.log(user,'user state')
   return (
     <>
-
+    {/* navbar beginning */}
       <Box sx={{ flexGrow: 1, pt: 1, pb: 2 }}>
         <Box sx={{ display: { sm: 'none', lg: 'block', xs: 'none', md: 'block' } }}>
           <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box sx={{ borderRight: "1px solid grey", pr: 2, justifyContent: 'center' }} >
                   <img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763726020/brand-logo_rjf1ow.png' width='108' height='43' alt='logo' onClick={handleBack} />
                 </Box>
-
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
                     <LocationOnOutlinedIcon />
                   </Box>
                   <Box>
-                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold', fontSize: '16px' }} >Kakinada</Typography>
-                    <Typography align='left' variant='p' sx={{ fontSize: '12px' }}>12th ward, Bhanugudi</Typography>
+                    <Typography align='left' variant='h6' sx={{ fontWeight: 'bold', fontSize: {lg:'16px',md:'20px'} }} >Kakinada</Typography>
+                    <Typography align='left' variant='p' sx={{display:{lg:'block',md:'none'}, fontSize: '12px' }}>12th ward, Bhanugudi</Typography>
                   </Box>
                 </Box>
 
-                <Box sx={{ pt: 1, px: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-                  {/* <ButtonGroup variant='text'> */}
-                  <Button sx={{ bgcolor: active === 'one' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, fontSize: '12px', fontWeight: 'bold' }} size='medium' onClick={() => handleButton('one')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }}>For you</Typography>  </Button>
-                  <Button sx={{ bgcolor: active === 'two' ? 'rgb(249, 244, 220)' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, }} size='medium' onClick={() => handleButton('two')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }} >events</Typography>  </Button>
-                  <Button sx={{ bgcolor: active === 'three' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: 20, }} size='medium' onClick={() => handleButton('three')}><Typography sx={{ fontSize: '12px', fontWeight: 'bold' }} >movies</Typography>  </Button>
-                  {/* </ButtonGroup> */}
+                <Box sx={{ pt: 1, px: 2, display: 'flex', justifyContent: 'space-between', gap: {lg:2,md:1} }}>
+                 
+                  <Button sx={{ bgcolor: active === 'one' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius:{lg:20,md:5}, }} size='small' onClick={() => handleButton('one')}><Typography sx={{ fontSize:{lg:'12px',md:'10px'}, fontWeight: 'bold' }}>For you</Typography>  </Button>
+                  <Button sx={{ bgcolor: active === 'two' ? 'rgb(249, 244, 220)' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius:{lg:20,md:5}, }} size='small' onClick={() => handleButton('two')}><Typography sx={{ fontSize: {lg:'12px',md:'10px'}, fontWeight: 'bold' }} >events</Typography>  </Button>
+                  <Button sx={{ bgcolor: active === 'three' ? '#EAE5FF' : 'transparent', color: 'rgb(35, 18, 104)', borderRadius: {lg:20,md:5}, }} size='small' onClick={() => handleButton('three')}><Typography sx={{ fontSize:{lg:'12px',md:'10px'}, fontWeight: 'bold' }} >movies</Typography>  </Button>
+                 
                 </Box>
               </Box>
+              {/* search bar */}
               <Box>
                 <Box sx={{ display: 'center', justifyContent: 'center' }}>
 
                   <Search sx={{ border: "1px solid grey", borderRadius: 3, }}>
                     <SearchIconWrapper>
-                      <SearchIcon />
+                      <SearchIcon sx={{color:'#6444e4'}}/>
                     </SearchIconWrapper>
                     <StyledInputBase
                       sx={{ width: '393px', height: '45px' }}
@@ -236,7 +253,7 @@ export default function NavBar() {
 
                   <Box sx={{ flexGrow: 1 }} />
                   <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                     {user?.picture && <img src={user?.picture} width='40px'height='40px' style={{borderRadius:'100%'}} alt='abd'/>}
+                     {user?.picture &&<Button sx={{borderRadius:100}} size='small' onClick={handleProfileMenuOpen}> <img src={user?.picture} width='30px' height='30px' style={{borderRadius:'100%'}} alt='prgfdsadfbnbvfdswdfghgfdeofile' /></Button>}
                     {!user?.picture && <IconButton
                       size="large"
                       edge="end"
@@ -245,11 +262,11 @@ export default function NavBar() {
                       aria-haspopup="true"
                       onClick={handleProfileMenuOpen}
                       color="inherit"
-                      sx={{bgcolor:'grey'}}
+                      sx={{bgcolor:'#d1d5db'}}
 
                     >
                      
-                      <AccountCircleOutlinedIcon  />
+                      <PermIdentityIcon sx={{color:'white'}} />
                     </IconButton>}
                   </Box>
                   <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -273,21 +290,20 @@ export default function NavBar() {
         <Box sx={{ display: { sm: 'block', md: 'none', xs: 'block', lg: 'none' } }}>
           <AppBar sx={{ color: 'black', bgcolor: 'white', boxShadow: '0 0px 8px 0 rgba(0, 0, 0, 0.2)' }} position="fixed">
             <Toolbar>
-              <Box sx={{ display: { sm: 'flex', xs: 'grid', md: 'flex', lg: 'flex' }, justifyContent: 'center' }}>
+              <Box sx={{ display: { sm: 'flex', xs: 'grid', md: 'flex', lg: 'flex' }, justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Box sx={{ pt: 2, color: 'blue', px: 1 }}>
                     <LocationOnOutlinedIcon />
                   </Box>
                   <Box>
                     <Typography align='left' variant='h6' sx={{ fontWeight: 'bold' }}>Kakinada</Typography>
-                    <Typography align='left' variant='p'>12th ward, Bhanugudi</Typography>
+                    {/* <Typography align='left' variant='p'>12th ward, Bhanugudi</Typography> */}
                   </Box>
                 </Box>
-                <Box sx={{ display: 'center', justifyContent: 'center' }}>
-
-                  <Search sx={{ border: "1px solid grey", borderRadius: 2, }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between',ml:4,my:1}}>
+                  <Search sx={{ border: "1px solid grey",minWidth:'210px', borderRadius: 2}}>
                     <SearchIconWrapper>
-                      <SearchIcon />
+                      <SearchIcon sx={{color:'##6444e4'}} />
                     </SearchIconWrapper>
                     <StyledInputBase
                       width="100%"
@@ -295,23 +311,7 @@ export default function NavBar() {
                       inputProps={{ 'aria-label': 'search' }}
                     />
                   </Search>
-
-                  <Box sx={{ flexGrow: 1 }} />
-                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <IconButton
-                      size="large"
-                      edge="end"
-                      aria-label="account of current user"
-                      aria-controls={menuId}
-                      aria-haspopup="true"
-                      onClick={handleProfileMenuOpen}
-                      color="inherit"
-                    >
-                      {/* <AccountCircle /> */}
-                      <AccountCircleOutlinedIcon />
-                    </IconButton>
-                  </Box>
-                  <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                  <Box sx={{ display: { xs: 'flex', md: 'none'} }}>
                     <IconButton
                       size="large"
                       aria-label="show more"
@@ -329,10 +329,15 @@ export default function NavBar() {
             </Toolbar>
           </AppBar>
         </Box>
+       
+
+
         {renderMobileMenu}
         {renderMenu}
 
       </Box>
+
+      {/* razorpay integration */}
 
       <Modal
       
@@ -344,19 +349,20 @@ export default function NavBar() {
 
         <Box sx={style}>
         <Box sx={{display:'flex',justifyContent:'center'}}>
+
           <Box
             component="img"
             src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1763992200/17466982242413_o1zwur.svg'
             alt="Responsive Image"
             sx={{
               width: '50%',
-              height: 'auto', // Maintain aspect ratio
+              height: 'auto',
               maxWidth: {
                 xs: '280px',
                 sm: '200px',
                 md: '300px',
-                lg: '350px', // Max width for large screens
-                xl: '400px', // Max width for extra-large screens
+                lg: '350px',
+                xl: '400px', 
               },
             }}
             

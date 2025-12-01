@@ -5,38 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import 'swiper/css';
+import 'swiper/css/navigation'
 import 'swiper/css/pagination';
-import { FreeMode,Pagination } from 'swiper/modules';
+import { FreeMode,Pagination,Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsDataActionInitiate } from '../redux/Action/getItemsAction';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme }) => ({
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-//   variants: [
-//     {
-//       props: ({ expand }) => !expand,
-//       style: {
-//         transform: 'rotate(0deg)',
-//       },
-//     },
-//     {
-//       props: ({ expand }) => !!expand,
-//       style: {
-//         transform: 'rotate(180deg)',
-//       },
-//     },
-//   ],
-// }));
-
 const Home = () => {
   const navigate=useNavigate();
 window.addEventListener('resize',function(){
@@ -54,10 +30,12 @@ const dispatch=useDispatch();
   const handleArtist=(name)=>{
     navigate(`/artist/${name}`)
   }
+  // dispatching data in state
   useEffect(() => {
     dispatch(getProductsDataActionInitiate());
   }, [dispatch]);
 
+  // getting data from state
   const data = useSelector(temp => temp.getproductsdata);
 console.log('dataaa',data)
 const districtDocs = data.data;
@@ -72,22 +50,17 @@ const artists = districtDocs?.[districtId]?.artists || [];
 const events = districtDocs?.[districtId]?.events || [];
 const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
 
-// const topEvents=districtDocs?.[districtId]?.top-events || [];
-console.log("districtIwwwwwwwwd:", movies);
-console.log("moviesss:", topEvents);
-
   return (
     <div className='home-page'>
     <Container >
-    
-    <Box sx={{mt:8}}>
+    <Box sx={{mt:{lg:8,md:8,sm:8,xs:12}}}>
         <Typography variant='h5' align='left'>Movies of the week</Typography>
       <Box sx={{mt:2}}>
+        {/* movies section */}
     <Swiper
         breakpoints={{
           0: {
           slidesPerView: 1,
-          spaceBetween: 10,
         },
         600:{
           slidesPerView: 2,
@@ -102,21 +75,18 @@ console.log("moviesss:", topEvents);
           spaceBetween: 40,
         },
         }}
-        // slidesPerView={mslides}
-        // spaceBetween={30}
         freeMode={true}
-        modules={[FreeMode, Pagination]}
+        navigation={true}
+        modules={[FreeMode, Pagination,Navigation]}
         className="mySwiper"
       >
-        {movies.map((movie,index)=>(
+        {movies.map((movie)=>(
           <SwiperSlide onClick={()=>handleClick(movie.title)}>
-      <Card sx={{ maxWidth: 345,borderRadius:2,mb:2 }}>
-     
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid lightgrey' }}>
       <CardMedia
         component="img"
         height="256"
         width="190"
-        
         image={movie.image}
         alt="Paella dish"
       />
@@ -131,15 +101,13 @@ console.log("moviesss:", topEvents);
   ))}
       </Swiper>
     </Box>
-
     <Box sx={{mt:5,pt:2,pb:2}}>
     <Typography variant='h5' align='left'>India's top Events</Typography>
-
     <Swiper
       breakpoints={{
           0: {
           slidesPerView: 1,
-          spaceBetween: 10,
+          // spaceBetween: 10,
         },
         600:{
           slidesPerView: 2,
@@ -155,24 +123,21 @@ console.log("moviesss:", topEvents);
         },
         }}
         freeMode={true}
-
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-        
+        navigation={true}
+        modules={[FreeMode, Pagination,Navigation]}
+        className="mySwiper"  
       >
-        {events.map((event,index)=>(
+        {events.map((event)=>(
           <SwiperSlide onClick={()=>handleEvent(event.title)}>
-      <Card sx={{ maxWidth: 345,borderRadius:3,mb:2 }}>
-     
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2 ,boxShadow:'none',border:'1px solid lightgrey'}}>
       <CardMedia
         component="img"
         height="420"
         width="294"
-        
         image={event.image}
         alt="Paella dish"
       />
-      <CardContent sx={{height:150}}>
+      <CardContent sx={{height:90}}>
           <Typography sx={{ marginBottom: 2,fontWeight:'bold',fontFamily:'Be Vietnam Pro, san-seriff' }}>{event.title}</Typography>
           <Typography>
            {event.date} | {event.location}
@@ -183,16 +148,13 @@ console.log("moviesss:", topEvents);
   ))}
       </Swiper>
     </Box>
-
-    
     <Box sx={{mt:5,pt:2,pb:2}}>
     <Typography variant='h5' align='left'>India's top Events</Typography>
-
     <Swiper
       breakpoints={{
           0: {
           slidesPerView: 1,
-          spaceBetween: 10,
+          // spaceBetween: 10,
         },
         600:{
           slidesPerView: 2,
@@ -208,24 +170,21 @@ console.log("moviesss:", topEvents);
         },
         }}
         freeMode={true}
-
-        modules={[FreeMode, Pagination]}
+        navigation={true}
+        modules={[FreeMode, Pagination,Navigation]}
         className="mySwiper"
-        
       >
-        {topEvents.map((top,index)=>(
+        {topEvents.map((top)=>(
           <SwiperSlide>
-      <Card sx={{ maxWidth: 345,borderRadius:3,mb:2 }}>
-     
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid lightgrey' }}>
       <CardMedia
         component="img"
         height="420"
         width="294"
-        
         image={top.image}
         alt="Paella dish"
       />
-      <CardContent sx={{height:150}}>
+      <CardContent sx={{height:'80px'}}>
           <Typography sx={{ marginBottom: 2,fontWeight:'bold',fontFamily:'Be Vietnam Pro, san-seriff' }}>{top.name}</Typography>
           <Typography>
            {top.date} | {top.location}
@@ -236,13 +195,12 @@ console.log("moviesss:", topEvents);
   ))}
       </Swiper>
     </Box>
-
     <Box sx={{pb:4}}>
       <Swiper
       breakpoints={{
           0: {
           slidesPerView: 1,
-          spaceBetween: 10,
+          // spaceBetween: 10,
         },
         600:{
           slidesPerView: 2,
@@ -258,12 +216,12 @@ console.log("moviesss:", topEvents);
         },
         }}
         freeMode={true}
-        modules={[FreeMode, Pagination]}
+        navigation={true}
+        modules={[FreeMode, Pagination,Navigation]}
         className="mySwiper"
       >
-        {artists.map((artist,index)=>(
+        {artists.map((artist)=>(
           <SwiperSlide onClick={()=>handleArtist(artist.name)}>
-          
       <img style={{borderRadius:'100%'}} alt='name' src={artist.image} height="190" width="190"/>
        <Typography variant='h6'> {artist.name}</Typography> 
     </SwiperSlide>

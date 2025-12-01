@@ -1,5 +1,5 @@
 
-import {  Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Ui/Home';
 import MovieDetails from './components/Ui/MovieDetails';
@@ -7,18 +7,21 @@ import Artist from './components/Ui/Artist';
 import NavBar from './components/Ui/NavBar';
 import Footer from './components/Ui/Footer';
 import EventDetails from './components/Ui/EventDetails';
+import Box from '@mui/material/Box';
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor:'linear-gradient(to bottom, #B7A3E3, white)'}}>
+    <div className="App" style={{ backgroundColor: 'linear-gradient(to bottom, #B7A3E3, white)' }}>
+      <Box>
         <NavBar />
+      </Box>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movies/:id' element={<MovieDetails />} />
-        <Route path='/events/:id' element={<EventDetails/>}/>
+        <Route path='/events/:id' element={<EventDetails />} />
         <Route path='/artist/:id' element={<Artist />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
