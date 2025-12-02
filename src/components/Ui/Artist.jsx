@@ -49,7 +49,7 @@ const artist=artists.find((item)=>item.name===id);
               }}
             />
        {/* about  artist */}
-       <Box sx={{display:'grid',justifyContent:'center',width:{lg:'400',sm:'100',xs:'100',md:'200'},height:{lg:'192',sm:'50',xs:'50'}}} >
+       <Box sx={{display:'grid',justifyContent:'center ',width:{lg:'400',sm:'100',xs:'100',md:'200'},height:{lg:'192',sm:'50',xs:'50'}}} >
         <Typography variant='h5' sx={{fontWeight:'bold',fontSize:'20px',fontFamily:'be vietnam pro'}} align='left'>{artist.name}</Typography>
         <Typography variant='p' align='left' sx={{fontSize:'16px',fontFamily:'be vietnam pro'}}>{artist.about}</Typography>
       </Box>

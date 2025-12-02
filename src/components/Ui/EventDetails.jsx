@@ -34,10 +34,34 @@ const EventDetails = () => {
   useEffect(()=>{
     window.scrollTo(0,0);
   },[])
-  
+  const handlePayment = async () => {
+    
+      const options = {
+        key: "rzp_test_Rl6zFhLRzvwqro",  
+        amount: 170*100,
+        currency: 'INR',
+        name: "Movie Ticket Booking",
+        description: `Booking for ${event.title}`,
+        // order_id: data.id,
+        handler: function (response) {
+          alert("Payment Successful!");
+          console.log("Payment Response:", response);
+        },
+        prefill: {
+          name: "Srinu",
+          email: "srinu@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#8B5CF6",
+        },
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+  }
   return (
     <Container>
-      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'space-around', mt:{xs:14,sm:8 ,lg:4}  }} gap={4}>
+      <Box sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'grid' }, justifyContent: 'space-around', mt:{lg:8,md:6,xs:14,sm:8,}  }} gap={4}>
         <Grid Container spacing={2}>
           <Grid size={4} >
             {/* event image */}
@@ -62,28 +86,28 @@ const EventDetails = () => {
         </Grid>
         {/* event details */}
         <Box sx={{ display: { lg: 'block', md: 'block', xs: 'none', sm: 'none' } }}>
-          <Box sx={{ display: 'grid', justifyContent: 'grid-start',bgcolor:'white', border: '1px solid lightgrey', borderRadius: 5, height: '300px', width: '400px', p: 2 }} >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography sx={{fontFamily:'be vietnam pro'}} variant='h4' align='left'>{event.title}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LabelImportantIcon fontSize='20px' /><Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CalendarTodayIcon fontSize='20px' />  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LocationOnOutlinedIcon fontSize='20px' /><Typography sx={{ fontSize: '14px', pl: 1 }} variant='h6' align='left'>{event.location}</Typography></Box>
+          <Box sx={{ display: 'grid', justifyContent: 'grid-start',bgcolor:'white', border: '1px solid lightgrey', borderRadius: 5, height: '200px', width: '300px', p: 2 }} >
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography sx={{fontFamily:'be vietnam pro',fontSize:'21px'}} variant='h4' align='left'>{event.title}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-5_wjdzgz.svg' width='24px' height='24px' alt='label'/>  <Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-6_2_znigso.svg' width='24px' height='24px' alt='date'/>  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-7_zfm7ps.svg' width='24px' height='24px' alt='loc'/><Typography sx={{ fontSize: '14px', pl: 1 }} variant='h6' align='left'>{event.location}</Typography></Box>
 
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid grey', width: 400, height: 36, pt: 1, mt: 1 }} >
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid grey', height: 36, pt: 1, mt: 1 }} >
               <Box sx={{ display: 'grid', justifyContent: 'space-around', }}>
                 <Typography variant='p'>Starts from</Typography>
-                <Typography variant='h6'>{event.price}</Typography>
+                <Typography variant='h6'><b>{event.price}</b></Typography>
               </Box>
-              <Button size='small' sx={{ bgcolor: '#9784e1ff' }} variant='contained'>Book Tickets</Button>
+              <Button onClick={handlePayment} size='small' sx={{fontFamily:'Bebas Neue', bgcolor: '#000000',fontWeight:'bold' }} variant='contained'>Book Tickets</Button>
             </Box>
           </Box>
         </Box>
         {/* for responsive design */}
         <Box sx={{ display: { lg: 'none', md: 'none', sm: 'block', xs: 'block' }, }}>
           <Box sx={{ display: 'grid', justifyContent: 'grid-start',bgcolor:'white', border: '1px solid grey', borderRadius: 5, height: 'auto', width: '250px', p: 2 }} >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography variant='h4' align='left'>{event.title}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LabelImportantIcon /><Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><CalendarTodayIcon />  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><LocationOnOutlinedIcon /><Typography sx={{ fontSize: '14px', pl: 1 }} variant='h6' align='left'>{event.location}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> <Typography sx={{fontFamily:'be vietnam pro',fontSize:'21px'}} variant='h4' align='left'>{event.title}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-5_wjdzgz.svg' width='24px' height='24px' alt='label'/>  <Typography variant='p' sx={{ fontSize: '14px', pl: 1 }}>{event.category}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-6_2_znigso.svg' width='24px' height='24px' alt='date'/>  <Typography sx={{ fontSize: '14px', pl: 1 }} variant='p'>{event.date}</Typography></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}><img src='https://res.cloudinary.com/dm2xtqaqy/image/upload/v1764584588/asset-svg-7_zfm7ps.svg' width='24px' height='24px' alt='loc'/><Typography sx={{ fontSize: '14px', pl: 1 }} variant='h6' align='left'>{event.location}</Typography></Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid grey', width: 'auto', height: 36, pt: 2 }} >
               <Box sx={{ display: 'grid', justifyContent: 'space-around', }}>

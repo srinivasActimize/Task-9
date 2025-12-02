@@ -126,8 +126,11 @@ export default function NavBar() {
     navigate('/');
   }
   const handleLogout=()=>{
+    if(window.confirm('are you sure you wznt to logout')){
     setAnchorEl(null)
     setUser('');
+    localStorage.setItem('user',[]);
+    }
   }
   useEffect(()=>{
     console.log(user)

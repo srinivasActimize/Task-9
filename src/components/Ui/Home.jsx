@@ -82,7 +82,7 @@ const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
       >
         {movies.map((movie)=>(
           <SwiperSlide onClick={()=>handleClick(movie.title)}>
-      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid lightgrey' }}>
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid #e7e5e5ff' }}>
       <CardMedia
         component="img"
         height="256"
@@ -91,7 +91,7 @@ const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
         alt="Paella dish"
       />
       <CardContent sx={{height:45}}>
-          <Typography sx={{ marginBottom: 2,fontWeight:'bold',fontFamily:'Be Vietnam Pro, san-seriff' }}>{movie.title}</Typography>
+          <Typography sx={{ fontWeight:'bold',fontFamily:'Be Vietnam Pro, san-seriff' }}>{movie.title}</Typography>
           <Typography>
            {movie.certificate} | {movie.language}
           </Typography>
@@ -129,7 +129,7 @@ const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
       >
         {events.map((event)=>(
           <SwiperSlide onClick={()=>handleEvent(event.title)}>
-      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2 ,boxShadow:'none',border:'1px solid lightgrey'}}>
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2 ,boxShadow:'none',border:'1px solid  #e7e5e5ff'}}>
       <CardMedia
         component="img"
         height="420"
@@ -176,7 +176,7 @@ const topEvents = districtDocs?.[districtId]?.["top-events"]||[];
       >
         {topEvents.map((top)=>(
           <SwiperSlide>
-      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid lightgrey' }}>
+      <Card sx={{ maxWidth: 345,borderRadius:4,mb:2,boxShadow:'none',border:'1px solid  #e7e5e5ff' }}>
       <CardMedia
         component="img"
         height="420"
